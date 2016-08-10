@@ -53,8 +53,8 @@ build-iPhoneSimulator/
 # project specific addtions
 ###
 
-# .pdf files produced by gnuplot
-.pdf
+# .png files produced by gnuplot
+*.png
 
 # .dat files produced by demo code
-.dat
+*.dat
