@@ -1,6 +1,8 @@
 require_relative 'EventMerger'
 
-em = EventMerger.new(1, 0.25, 2)
+em = EventMerger.new(1, 0.25, 2) do |time|
+    puts "event at " + time.to_s
+end
 
 5.times do
   em.tick()

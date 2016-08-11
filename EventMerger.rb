@@ -2,13 +2,14 @@ require_relative "StatisticsUtils"
 
 class EventMerger
 
-  def initialize(mean_time_error, min_merge_peak, network_delay)
+  def initialize(mean_time_error, min_merge_peak, network_delay, &send_merged)
     @prev_y = @curr_y = @next_y = 0
     @t = 0
     @received_reports = []
     @mean_time_error = mean_time_error
     @min_merge_peak = min_merge_peak
     @delay = network_delay + 3 * @mean_time_error
+    @send_merged = send_merged;
   end
 
   def receive(report)
@@ -26,7 +27,7 @@ class EventMerger
                                                   @t + 1 - @delay
     # output events
     if @prev_y < @curr_y && @curr_y > @next_y && @curr_y > @min_merge_peak then
-      output_merged_event(@t - @delay)
+      @send_merged.call(@t - @delay)
     end
     # remove old reports from list
     @received_reports.reject! do |rep_time|
@@ -36,10 +37,5 @@ class EventMerger
     # advance time
     @t = @t + 1
   end
-
-
-  def output_merged_event (time)
-    puts "event at " + time.to_s
-  end
-
+  
 end
