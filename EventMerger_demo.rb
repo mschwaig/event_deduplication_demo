@@ -1,19 +1,25 @@
 require_relative 'EventMerger'
 
-em = EventMerger.new(1, 0.25, 2) do |time|
+em = EventMerger.new(mean_time_error: 1,
+                     min_merge_peak: 0.25,
+                     time_inc: 0.1,
+                     network_delay: 2) do |time|
     puts "event at " + time.to_s
 end
 
-5.times do
+50.times do
   em.tick()
 end
 em.receive(2)
-em.tick()
-em.tick()
+20.times do
+  em.tick()
+end
 em.receive(4)
-em.tick()
+10.times do
+  em.tick()
+end
 em.receive(5)
-8.times do
+80.times do
   em.tick()
 end
 
