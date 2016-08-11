@@ -3,7 +3,7 @@ require_relative 'EventMerger'
 em = EventMerger.new(mean_time_error: 1,
                      min_merge_peak: 0.25,
                      time_inc: 0.1,
-                     network_delay: 2) do |time|
+                     max_network_delay: 2) do |time|
     puts "event at " + time.to_s
 end
 

@@ -9,12 +9,12 @@ class EventMerger
     @received_reports = []
     @mean_time_error = args[:mean_time_error]
     @min_merge_peak =args[:min_merge_peak] || 0.0
-    @delay = args[:network_delay] + 3 * @mean_time_error
+    @delay = args[:max_network_delay] + 3 * @mean_time_error
     @send_merged = send_merged
   end
 
   def receive(report)
-    unless report < @t - 3 * @mean_time_error then
+    unless report < @t - @delay then
       @received_reports << report
     end
   end
