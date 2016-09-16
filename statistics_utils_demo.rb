@@ -1,4 +1,4 @@
-require_relative 'StatisticsUtils'
+require_relative 'statistics_utils'
 
 mu_list = [2, 4, 5]
 

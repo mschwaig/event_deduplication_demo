@@ -1,4 +1,4 @@
-require_relative "StatisticsUtils"
+require_relative "statistics_utils"
 
 class EventMerger
 

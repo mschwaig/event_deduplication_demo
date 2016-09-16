@@ -1,4 +1,4 @@
-require_relative 'EventMerger'
+require_relative 'event_merger'
 
 em = EventMerger.new(mean_time_error: 1,
                      min_merge_peak: 0.25,
